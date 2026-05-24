@@ -1,0 +1,40 @@
+.dashboard-root {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 40;
+}
+
+.welcome-text {
+    -fx-font-family: "Arial", "Segoe UI", sans-serif;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0A438F;
+}
+
+.brand-text {
+    -fx-font-family: "Brush Script MT", "Segoe Script", "Cursive", sans-serif;
+    -fx-font-size: 40px;
+    -fx-text-fill: #0A438F;
+}
+
+.folder-button {
+    -fx-background-color: linear-gradient(to bottom, #2C4875, #122342); /* Gradasi warna biru gelap */
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    
+    -fx-pref-width: 160px;
+    -fx-pref-height: 130px;
+    
+    -fx-background-radius: 25 10 10 10; 
+    -fx-border-radius: 25 10 10 10;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 5);
+    -fx-cursor: hand;
+}
+
+.folder-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3A5F99, #1B335C);
+    -fx-effect: dropshadow(three-pass-box, rgba(10,67,143,0.4), 15, 0, 0, 5);
+}
