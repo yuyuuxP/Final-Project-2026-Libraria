@@ -26,7 +26,6 @@ public class KelolaBukuController {
         viewButton.setPrefWidth(220);
         backButton.setPrefWidth(220);
 
-        // STYLE BUTTON
         String buttonStyle =
                 "-fx-background-color: #4DA8DA;" +
                 "-fx-text-fill: white;" +
@@ -46,32 +45,17 @@ public class KelolaBukuController {
                 "-fx-background-radius: 10px;"
         );
 
-        // ADD BOOK
         addButton.setOnAction(e -> {
-
             BukuController.show(stage);
-
         });
-
-        // DELETE BOOK
         deleteButton.setOnAction(e -> {
-
             DeleteBukuController.show(stage);
-
         });
-
-        // VIEW BOOK
         viewButton.setOnAction(e -> {
-
             ViewBukuController.show(stage);
-
         });
-
-        // BACK
         backButton.setOnAction(e -> {
-
             DashboardController.show(stage);
-
         });
 
         VBox root = new VBox(20);

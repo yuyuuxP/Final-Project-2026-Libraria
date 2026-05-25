@@ -21,13 +21,10 @@ public class BukuController {
 
         TextField judulField = new TextField();
         judulField.setPromptText("Book Title");
-
         TextField penulisField = new TextField();
         penulisField.setPromptText("Author");
-
         TextField kategoriField = new TextField();
         kategoriField.setPromptText("Category");
-
         TextField genreField = new TextField();
         genreField.setPromptText("Genre");
 
@@ -49,7 +46,6 @@ public class BukuController {
 
         Button tambahButton =
                 new Button("Add Book");
-
         Button kembaliButton =
                 new Button("⬅ Back");
 
@@ -64,7 +60,6 @@ public class BukuController {
                 "-fx-background-radius: 10;" +
                 "-fx-cursor: hand;"
         );
-
         kembaliButton.setStyle(
                 "-fx-background-color: #E74C3C;" +
                 "-fx-text-fill: white;" +

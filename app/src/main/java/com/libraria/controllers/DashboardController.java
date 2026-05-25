@@ -1,41 +1,27 @@
 package com.libraria.controllers;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.libraria.views.DashboardView;
 import com.libraria.utils.AlertHelper;
 
 public class DashboardController {
     public static void show(Stage stage) {
-        Button bukuButton = new Button("📚 Books Management");
-        Button pinjamButton = new Button("📥 Borrowing");
-        Button kembaliButton = new Button("📤 Returning");
+        DashboardView view = new DashboardView();
 
-        bukuButton.setOnAction(e -> {
+        view.getBukuButton().setOnAction(e -> {
             KelolaBukuController.show(stage);
         });
-
-        pinjamButton.setOnAction(e -> {
-            AlertHelper.info("Borrowing feature is not available yet!");
+        view.getPinjamButton().setOnAction(e -> {
+            AlertHelper.info("Borrow feature is under development!");
+        });
+        view.getKembaliButton().setOnAction(e -> {
+            AlertHelper.info("Return book feature is under development!");
         });
 
-        kembaliButton.setOnAction(e -> {
-            AlertHelper.info("Returning feature is not available yet!");
-        });
-
-        VBox root = new VBox(20);
-        root.setAlignment(Pos.CENTER);
-        root.getChildren().addAll(
-                bukuButton,
-                pinjamButton,
-                kembaliButton
-        );
-
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(view.getRoot(), 700, 450);
         stage.setScene(scene);
-        stage.setTitle("Dashboard");
+        stage.setTitle("Libraria - Dashboard");
         stage.show();
     }
 }
