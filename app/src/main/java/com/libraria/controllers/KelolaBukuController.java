@@ -22,7 +22,7 @@ public class KelolaBukuController {
         });
 
         Scene scene = new Scene(view.getRoot(), 700, 550);
-        stage.setTitle("Libraria - Kelola Buku");
+        stage.setTitle("Libraria - Book Management");
         stage.setScene(scene);
         stage.show();
     }

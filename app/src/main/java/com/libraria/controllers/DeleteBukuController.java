@@ -3,86 +3,108 @@ package com.libraria.controllers;
 import com.libraria.models.Buku;
 import com.libraria.services.BukuService;
 import com.libraria.utils.AlertHelper;
+import com.libraria.views.DeleteBukuView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
-import java.util.ArrayList;
+import javafx.util.Callback;
 
 public class DeleteBukuController {
+    private static BukuService bukuService = new BukuService();
+    private static ObservableList<Buku> bukuList = FXCollections.observableArrayList();
 
+    @SuppressWarnings("unchecked")
     public static void show(Stage stage) {
-        BukuService bukuService = new BukuService();
+        DeleteBukuView view = new DeleteBukuView();
 
-        Label title = new Label("🗑️ DELETE BOOK");
-        title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #C0392B;");
+        TableColumn<Buku, String> colJudul = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(0);
+        TableColumn<Buku, String> colPenulis = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(1);
+        TableColumn<Buku, String> colKategori = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(2);
+        Callback<TableColumn<Buku, String>, TableCell<Buku, String>> centerCellFactory = param -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    setAlignment(Pos.CENTER);
+                }
+            }
+        };
 
-        VBox deleteListContainer = new VBox(10);
-        deleteListContainer.setAlignment(Pos.CENTER);
-        renderDeleteList(deleteListContainer, bukuService);
+        colJudul.setCellFactory(centerCellFactory);
+        colPenulis.setCellFactory(centerCellFactory);
+        colKategori.setCellFactory(centerCellFactory);
 
-        Button backButton = new Button("⬅ Back");
-        backButton.setPrefWidth(150);
-        backButton.setStyle(
-                "-fx-background-color: #7F8C8D;" +
-                "-fx-text-fill: white;" +
-                "-fx-font-weight: bold;" +
-                "-fx-background-radius: 8;"
-        );
-        backButton.setOnAction(e -> {
+        TableColumn<Buku, Void> colAksi = new TableColumn<>("Action");
+        colAksi.setPrefWidth(120);
+
+        Callback<TableColumn<Buku, Void>, TableCell<Buku, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Buku, Void> call(final TableColumn<Buku, Void> param) {
+                return new TableCell<>() {
+                    private final Button btnHapus = new Button("Delete");
+                    {
+                        btnHapus.setStyle(
+                            "-fx-background-color: #E74C3C;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-background-radius: 6;" +
+                            "-fx-cursor: hand;" +
+                            "-fx-padding: 5 12 5 12;"
+                        );
+                        
+                        btnHapus.setOnAction(event -> {
+                            Buku dataBuku = getTableView().getItems().get(getIndex());
+                            boolean yakinHapus = view.showConfirmationPopup(stage, dataBuku.getTitle());
+                            if (yakinHapus) {
+                                if (bukuService.deleteBuku(dataBuku.getTitle())) {
+                                    view.showSuccessPopup(stage, "The '" + dataBuku.getTitle() + "' book is successfully deleted!");
+                                    refreshTable(view); 
+                                } else {
+                                    AlertHelper.error("Failed to delete book data from database!");
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btnHapus);
+                            setAlignment(Pos.CENTER);
+                        }
+                    }
+                };
+            }
+        };
+
+        colAksi.setCellFactory(cellFactory);
+        view.getTableBuku().getColumns().add(colAksi);
+        refreshTable(view);
+
+        view.getKembaliButton().setOnAction(e -> {
             KelolaBukuController.show(stage);
         });
 
-        VBox root = new VBox(20);
-        root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background-color: #FDFEFE; -fx-padding: 25;");
-        root.getChildren().addAll(title, deleteListContainer, backButton);
-
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(view.getRoot(), 750, 580);
+        stage.setTitle("Libraria - Book Deletion");
         stage.setScene(scene);
         stage.show();
     }
 
-    private static void renderDeleteList(VBox container, BukuService service) {
-        container.getChildren().clear();
-
-        ArrayList<Buku> listBuku = service.ambilSemuaBuku();
-        if (listBuku.isEmpty()) {
-            container.getChildren().add(new Label("No books available for deletion."));
-            return;
-        }
-
-        int nomor = 1;
-        for (Buku buku : listBuku) {
-            Label infoBuku = new Label(nomor + ". " + buku.getTitle());
-            infoBuku.setStyle("-fx-font-size: 14px;");
-
-            Button deleteBtn = new Button("Delete");
-            deleteBtn.setStyle(
-                    "-fx-background-color: #E74C3C;" +
-                    "-fx-text-fill: white;" +
-                    "-fx-font-size: 12px;" +
-                    "-fx-background-radius: 5;" +
-                    "-fx-cursor: hand;"
-            );
-
-            deleteBtn.setOnAction(e -> {
-                if (service.deleteBuku(buku.getTitle())) {
-                    AlertHelper.success("Book '" + buku.getTitle() + "' successfully deleted the book!");
-                    renderDeleteList(container, service);
-                } else {
-                    AlertHelper.error("Failed to delete book!");
-                }
-            });
-
-            HBox row = new HBox(20);
-            row.setAlignment(Pos.CENTER);
-            row.getChildren().addAll(infoBuku, deleteBtn);
-            container.getChildren().add(row);
-            nomor++;
-        }
+    private static void refreshTable(DeleteBukuView view) {
+        bukuList.clear();
+        bukuList.addAll(bukuService.ambilSemuaBuku());
+        view.getTableBuku().setItems(bukuList);
     }
 }
