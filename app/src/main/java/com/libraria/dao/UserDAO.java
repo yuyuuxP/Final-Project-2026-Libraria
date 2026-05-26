@@ -3,12 +3,12 @@ package com.libraria.dao;
 import com.libraria.database.DatabaseConnection;
 import java.sql.*;
 
-public class UserDAO extends DatabaseConnection{
+public class UserDAO {
     private Connection connection;
 
     public UserDAO() {
         try {
-            this.connection = getConnection();
+            this.connection = DatabaseConnection.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }

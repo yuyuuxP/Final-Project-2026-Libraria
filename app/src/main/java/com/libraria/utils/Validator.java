@@ -10,7 +10,7 @@ public class Validator {
     }
 
     public boolean isPasswordMatch(String newPassword, String confirmPassword) {
-        if (oldPassword.equals(newPassword)) {
+        if (newPassword.equals(confirmPassword)) {
             return true;
         }else {
             return false;
