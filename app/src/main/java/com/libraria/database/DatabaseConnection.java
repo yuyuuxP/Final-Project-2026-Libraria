@@ -23,10 +23,11 @@ public class DatabaseConnection {
         try {
             Statement stmt = conn.createStatement();
             stmt.execute("""
-                CREATE TABLE IF NOT EXISTS users(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    email TEXT UNIQUE,
-                    password TEXT
+                CREATE TABLE IF NOT EXISTS users (
+                username TEXT NOT NULL UNIQUE, 
+                password TEXT NOT NULL, 
+                secretquestion TEXT NOT NULL, 
+                secretanswer TEXT NOT NULL
                 )
             """);
 
