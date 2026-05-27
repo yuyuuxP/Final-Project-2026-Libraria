@@ -24,7 +24,7 @@ public class DatabaseConnection {
             Statement stmt = conn.createStatement();
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS users (
-                username TEXT NOT NULL UNIQUE, 
+                email TEXT NOT NULL UNIQUE, 
                 password TEXT NOT NULL, 
                 secretquestion TEXT NOT NULL, 
                 secretanswer TEXT NOT NULL
