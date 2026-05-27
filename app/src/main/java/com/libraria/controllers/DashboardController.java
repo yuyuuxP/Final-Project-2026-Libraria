@@ -5,12 +5,15 @@ import javafx.stage.Stage;
 import com.libraria.views.DashboardView;
 import com.libraria.utils.AlertHelper;
 
-public class DashboardController {
-    public static void show(Stage stage) {
+public class DashboardController extends BukuBaseController{
+    private BukuBaseController kelolaBukuController = new KelolaBukuController();
+
+    @Override
+    public void show(Stage stage) {
         DashboardView view = new DashboardView();
 
         view.getBukuButton().setOnAction(e -> {
-            KelolaBukuController.show(stage);
+            kelolaBukuController.show(stage);
         });
         view.getPinjamButton().setOnAction(e -> {
             AlertHelper.info("Borrow feature is under development!");

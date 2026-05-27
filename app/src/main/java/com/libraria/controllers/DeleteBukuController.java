@@ -1,7 +1,6 @@
 package com.libraria.controllers;
 
 import com.libraria.models.Buku;
-import com.libraria.services.BukuService;
 import com.libraria.utils.AlertHelper;
 import com.libraria.views.DeleteBukuView;
 import javafx.collections.FXCollections;
@@ -14,12 +13,13 @@ import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class DeleteBukuController {
-    private static BukuService bukuService = new BukuService();
+public class DeleteBukuController extends BukuBaseController {
     private static ObservableList<Buku> bukuList = FXCollections.observableArrayList();
+    private BukuBaseController kelolaBukuController = new KelolaBukuController();
 
     @SuppressWarnings("unchecked")
-    public static void show(Stage stage) {
+    @Override
+    public void show(Stage stage) {
         DeleteBukuView view = new DeleteBukuView();
 
         TableColumn<Buku, String> colJudul = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(0);
@@ -93,7 +93,7 @@ public class DeleteBukuController {
         refreshTable(view);
 
         view.getKembaliButton().setOnAction(e -> {
-            KelolaBukuController.show(stage);
+            kelolaBukuController.show(stage);
         });
 
         Scene scene = new Scene(view.getRoot(), 750, 580);

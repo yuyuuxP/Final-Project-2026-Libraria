@@ -1,7 +1,6 @@
 package com.libraria.controllers;
 
 import com.libraria.models.Buku;
-import com.libraria.services.BukuService;
 import com.libraria.utils.AlertHelper;
 import com.libraria.views.TambahBukuView;
 import javafx.collections.FXCollections;
@@ -9,11 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BukuController {
-    private static BukuService bukuService = new BukuService();
+public class BukuController extends BukuBaseController {
     private static ObservableList<Buku> bukuList = FXCollections.observableArrayList();
+    private BukuBaseController kelolaBukuController = new KelolaBukuController();
 
-    public static void show(Stage stage) {
+    @Override
+    public void show(Stage stage) {
         TambahBukuView view = new TambahBukuView();
         refreshTable(view);
 
@@ -39,7 +39,7 @@ public class BukuController {
             }
         });
         view.getKembaliButton().setOnAction(e -> {
-            KelolaBukuController.show(stage);
+            kelolaBukuController.show(stage);
         });
 
         Scene scene = new Scene(view.getRoot(), 920, 580);

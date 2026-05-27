@@ -1,7 +1,6 @@
 package com.libraria.controllers;
 
 import com.libraria.models.Buku;
-import com.libraria.services.BukuService;
 import com.libraria.views.ListBookView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,9 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
-public class ViewBukuController {
-    public static void show(Stage stage) {
-        BukuService bukuService = new BukuService();
+public class ViewBukuController extends BukuBaseController{
+    private BukuBaseController kelolaBukuController = new KelolaBukuController();
+
+    @Override
+    public void show(Stage stage) {
         ListBookView view = new ListBookView();
 
         ArrayList<Buku> listBuku = bukuService.ambilSemuaBuku();
@@ -77,7 +78,7 @@ public class ViewBukuController {
             }
         }
         view.getKembaliButton().setOnAction(e -> {
-            KelolaBukuController.show(stage);
+            kelolaBukuController.show(stage);
         });
 
         Scene scene = new Scene(view.getRoot(), 850, 600);

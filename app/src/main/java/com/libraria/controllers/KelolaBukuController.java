@@ -4,21 +4,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.libraria.views.KelolaBukuView;
 
-public class KelolaBukuController {
-    public static void show(Stage stage) {
+public class KelolaBukuController extends BukuBaseController {
+    @Override
+    public void show(Stage stage) {
         KelolaBukuView view = new KelolaBukuView();
+        BukuController bukuController = new BukuController();
+        DashboardController dashboardController = new DashboardController();
+        DeleteBukuController deleteBukuController = new DeleteBukuController();
+        BukuBaseController viewBukuController = new ViewBukuController();
 
         view.getViewButton().setOnAction(e -> {
-            ViewBukuController.show(stage);
+            viewBukuController.show(stage);
         });
         view.getAddButton().setOnAction(e -> {
-            BukuController.show(stage);
+            bukuController.show(stage);
         });
         view.getDeleteButton().setOnAction(e -> {
-            DeleteBukuController.show(stage);
+            deleteBukuController.show(stage);
         });
         view.getBackButton().setOnAction(e -> {
-            DashboardController.show(stage);
+            dashboardController.show(stage);
         });
 
         Scene scene = new Scene(view.getRoot(), 700, 550);
