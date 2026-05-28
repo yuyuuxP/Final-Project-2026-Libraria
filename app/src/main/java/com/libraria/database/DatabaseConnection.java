@@ -27,9 +27,12 @@ public class DatabaseConnection {
                 email TEXT NOT NULL UNIQUE, 
                 password TEXT NOT NULL, 
                 secretquestion TEXT NOT NULL, 
-                secretanswer TEXT NOT NULL
+                secretanswer TEXT NOT NULL,
+                role TEXT NOT NULL DEFAULT 'member'
                 )
             """);
+
+            stmt.execute("INSERT OR IGNORE INTO users (email, password, secretquestion, secretanswer, role) VALUES ('admin@gmail.com', 'passwordkamu', '-', '-', 'admin')");
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS books(
