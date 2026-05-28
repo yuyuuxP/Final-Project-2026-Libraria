@@ -16,7 +16,7 @@ public class ListBookView {
     private Button kembaliButton;
 
     public ListBookView() {
-        Label titleLabel = new Label("Book Collection");
+        Label titleLabel = new Label("📖 Book Collection");
         titleLabel.setStyle(
             "-fx-font-family: 'Arial Black', 'Segoe UI', sans-serif;" +
             "-fx-font-size: 32px;" +

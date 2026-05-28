@@ -21,7 +21,7 @@ public class ViewBukuController extends BukuBaseController{
         ArrayList<Buku> listBuku = bukuService.ambilSemuaBuku();
 
         if (listBuku.isEmpty()) {
-            Label emptyLabel = new Label("Belum ada koleksi buku yang tersedia.");
+            Label emptyLabel = new Label("No books available in the catalog. Please add new books to see them here.");
             emptyLabel.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 15px; -fx-text-fill: #95A5A6; -fx-padding: 40;");
             view.getCatalogGrid().getChildren().add(emptyLabel);
         } else {
@@ -82,7 +82,7 @@ public class ViewBukuController extends BukuBaseController{
         });
 
         Scene scene = new Scene(view.getRoot(), 850, 600);
-        stage.setTitle("Libraria - Katalog Koleksi Buku");
+        stage.setTitle("Libraria - Book Catalog");
         stage.setScene(scene);
         stage.show();
     }

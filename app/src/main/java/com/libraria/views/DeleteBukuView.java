@@ -24,7 +24,7 @@ public class DeleteBukuView {
 
     @SuppressWarnings("unchecked")
     public DeleteBukuView() {
-        Label titleLabel = new Label("🗑️ Delete Book");
+        Label titleLabel = new Label("🚮 Delete Book");
         titleLabel.setStyle(
             "-fx-font-family: 'Arial Black', 'Segoe UI', sans-serif;" +
             "-fx-font-size: 32px;" +

@@ -15,30 +15,34 @@ public class BukuController extends BukuBaseController {
     @Override
     public void show(Stage stage) {
         TambahBukuView view = new TambahBukuView();
-        refreshTable(view);
+        bukuList.clear();
+        view.getTableBuku().setItems(bukuList);
 
         view.getTambahButton().setOnAction(e -> {
-            String judul = view.getJudulField().getText();
-            String penulis = view.getPenulisField().getText();
-            String kategori = view.getKategoriField().getText();
-            String genre = view.getGenreField().getText();
+            String judul = view.getJudulField().getText().trim();
+            String penulis = view.getPenulisField().getText().trim();
+            String kategori = view.getKategoriField().getText().trim();
+            String genre = view.getGenreField().getText().trim();
 
+            if (judul.isEmpty() || penulis.isEmpty() || kategori.isEmpty() || genre.isEmpty()) {
+                AlertHelper.error("All fields must be filled out! Please complete the form before submitting");
+                return;
+            }
             Buku bukuBaru = new Buku(judul, penulis, genre, kategori);
-
             if (bukuService.tambahBuku(bukuBaru)) {
                 AlertHelper.success("New book added successfully!");
-                
+                bukuList.add(bukuBaru);
+
                 view.getJudulField().clear();
                 view.getPenulisField().clear();
                 view.getKategoriField().clear();
                 view.getGenreField().clear();
-
-                refreshTable(view);
             } else {
                 AlertHelper.error("Failed to add new book! Please ensure all form fields are filled correctly.");
             }
         });
         view.getKembaliButton().setOnAction(e -> {
+            bukuList.clear();
             kelolaBukuController.show(stage);
         });
 
@@ -46,11 +50,5 @@ public class BukuController extends BukuBaseController {
         stage.setTitle("Libraria - Add New Book");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private static void refreshTable(TambahBukuView view) {
-        bukuList.clear();
-        bukuList.addAll(bukuService.ambilSemuaBuku());
-        view.getTableBuku().setItems(bukuList);
     }
 }
