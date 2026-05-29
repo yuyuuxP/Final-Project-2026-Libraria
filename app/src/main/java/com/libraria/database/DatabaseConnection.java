@@ -32,7 +32,7 @@ public class DatabaseConnection {
                 )
             """);
 
-            stmt.execute("INSERT OR IGNORE INTO users (email, password, secretquestion, secretanswer, role) VALUES ('admin@gmail.com', 'passwordkamu', '-', '-', 'admin')");
+            stmt.execute("INSERT OR IGNORE INTO users (email, password, secretquestion, secretanswer, role) VALUES ('admin@libraria.com', 'admin12345', '-', '-', 'admin')");
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS books(
