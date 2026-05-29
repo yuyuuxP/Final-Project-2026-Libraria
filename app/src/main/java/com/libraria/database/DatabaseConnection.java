@@ -27,12 +27,9 @@ public class DatabaseConnection {
                 email TEXT NOT NULL UNIQUE, 
                 password TEXT NOT NULL, 
                 secretquestion TEXT NOT NULL, 
-                secretanswer TEXT NOT NULL,
-                role TEXT NOT NULL DEFAULT 'member'
+                secretanswer TEXT NOT NULL
                 )
             """);
-
-            stmt.execute("INSERT OR IGNORE INTO users (email, password, secretquestion, secretanswer, role) VALUES ('admin@libraria.com', 'admin12345', '-', '-', 'admin')");
 
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS books(
@@ -42,6 +39,13 @@ public class DatabaseConnection {
                     category TEXT,
                     genre TEXT,
                     status TEXT
+                )
+            """);
+            stmt.execute("""
+                CREATE TABLE IF NOT EXISTS borrowed_books(
+                    book_title TEXT,
+                    borrower_name TEXT,
+                    borrow_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """);
         } catch (Exception e) {

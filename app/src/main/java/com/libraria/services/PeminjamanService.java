@@ -1,11 +1,17 @@
-// package com.libraria.services;
+package com.libraria.services;
 
-// public class PeminjamanService {
+import com.libraria.dao.PeminjamanDAO;
+import com.libraria.models.Peminjaman;
+import java.util.ArrayList;
 
-//     public boolean cekMaksimalHari(int hari) {
+public class PeminjamanService {
+    private PeminjamanDAO peminjamanDAO = new PeminjamanDAO();
 
-//         return hari <= 14;
+    public ArrayList<Peminjaman> ambilKatalogPeminjaman() {
+        return peminjamanDAO.getKatalogPeminjaman();
+    }
 
-//     }
-
-// }
+    public boolean eksekusiPeminjaman(String judul, String nama) {
+        return peminjamanDAO.pinjamBuku(judul, nama); 
+    }
+}

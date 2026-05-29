@@ -16,7 +16,7 @@ public class DashboardController extends BukuBaseController{
             kelolaBukuController.show(stage);
         });
         view.getPinjamButton().setOnAction(e -> {
-            AlertHelper.info("Borrow feature is under development!");
+            AlertHelper.info("Borrow book feature is under development!");
         });
         view.getKembaliButton().setOnAction(e -> {
             AlertHelper.info("Return book feature is under development!");
