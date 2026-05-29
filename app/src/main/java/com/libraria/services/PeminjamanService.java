@@ -12,6 +12,6 @@ public class PeminjamanService {
     }
 
     public boolean eksekusiPeminjaman(String judul, String nama) {
-        return peminjamanDAO.pinjamBuku(judul, nama); 
+        return peminjamanDAO.pinjamBuku(judul, nama);
     }
 }
