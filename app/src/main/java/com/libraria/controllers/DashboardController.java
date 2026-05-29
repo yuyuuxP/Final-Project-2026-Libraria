@@ -3,10 +3,11 @@ package com.libraria.controllers;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.libraria.views.DashboardView;
-import com.libraria.utils.AlertHelper;
 
-public class DashboardController extends BukuBaseController{
+public class DashboardController extends BukuBaseController {
     private BukuBaseController kelolaBukuController = new KelolaBukuController();
+    private PeminjamanController peminjamanController = new PeminjamanController(this);
+    private PengembalianController pengembalianController = new PengembalianController(this);
 
     @Override
     public void show(Stage stage) {
@@ -16,10 +17,10 @@ public class DashboardController extends BukuBaseController{
             kelolaBukuController.show(stage);
         });
         view.getPinjamButton().setOnAction(e -> {
-            AlertHelper.info("Borrow feature is under development!");
+            peminjamanController.show(stage);
         });
         view.getKembaliButton().setOnAction(e -> {
-            AlertHelper.info("Return book feature is under development!");
+            pengembalianController.show(stage);
         });
 
         Scene scene = new Scene(view.getRoot(), 700, 450);
