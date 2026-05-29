@@ -12,7 +12,7 @@ public class LoginController extends LoginBaseController {
         loadScene(stage, loginView.getRoot(), "Libraria - Log In");
 
         loginView.getLoginButton().setOnAction(e -> {
-            String email = loginView.getEmailField().getText().trim();
+            String email = loginView.getEmailField().getText().trim().toLowerCase();
             String password = loginView.getPasswordText().trim();
             String result = verifyLogin(email, password);
 
@@ -33,20 +33,40 @@ public class LoginController extends LoginBaseController {
             ForgotPasswordController forgotPasswordController = new ForgotPasswordController();
             forgotPasswordController.show(stage);
         });
+
+        loginView.getEmailField().setOnAction(e -> {
+            if (loginView.getPasswordVisible().isVisible()) {
+                loginView.getPasswordVisible().requestFocus();
+            } else {
+                loginView.getPasswordField().requestFocus();
+            }
+        });
+
+        loginView.getPasswordField().setOnAction(e -> {
+            loginView.getLoginButton().fire();
+        });
+
+        loginView.getPasswordVisible().setOnAction(e -> {
+            loginView.getLoginButton().fire();
+        });        
     }
 
     public String verifyLogin(String email, String password) {
         if (validator.isFieldNotEmpty(email) && validator.isFieldNotEmpty(password)) {
             if (validator.isEmailValid(email)) {
-                if (validator.isPasswordValid(password)) {
-                    Member member = new Member(email, password);
-                    if (data.login(member)) {
-                        return "Success";
+                if (validator.isPasswordContainsSpace(password)) {
+                    if (validator.isPasswordValid(password)) {
+                        Member member = new Member(email, password);
+                        if (data.login(member)) {
+                            return "Success";
+                        } else {
+                            return "Email or password is incorrect!";
+                        }
                     } else {
-                        return "Email or password is incorrect!";
+                        return "Password must be at least 8 characters!";
                     }
                 } else {
-                    return "Password must be at least 8 characters!";
+                    return "Enter your Password without any space!";
                 }
             } else {
                 return "Email must end with @gmail.com";
