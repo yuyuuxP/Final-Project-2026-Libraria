@@ -48,4 +48,12 @@ public class Validator {
             return false;
         }
     }
+
+    public boolean isPasswordContainsSpace(String password) {
+        if (password.contains(" ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
