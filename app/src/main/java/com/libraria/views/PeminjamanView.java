@@ -34,7 +34,7 @@ public class PeminjamanView {
         namaPeminjamField.setPromptText("Enter borrower name...");
         namaPeminjamField.setStyle("-fx-background-radius: 8; -fx-padding: 10;");
 
-        pinjamButton = new Button("📥 Execute Borrow");
+        pinjamButton = new Button("📤 Execute Borrow");
         pinjamButton.setMaxWidth(Double.MAX_VALUE);
         pinjamButton.setStyle("-fx-background-color: #004AAD; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 12;");
 
@@ -77,7 +77,8 @@ public class PeminjamanView {
     }
     public TextField getNamaPeminjamField() { 
         return namaPeminjamField; }
-    public Button getPinjamButton() { return pinjamButton; 
+    public Button getPinjamButton() { 
+        return pinjamButton; 
     }
     public Button getKembaliButton() { 
         return kembaliButton; 

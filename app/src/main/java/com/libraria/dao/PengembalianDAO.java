@@ -17,7 +17,7 @@ public class PengembalianDAO {
             int result = pstmt.executeUpdate();
             return result > 0;
         } catch (Exception e) {
-            System.out.println("Error di PengembalianDAO: " + e.getMessage());
+            System.out.println("Failed! Error in PengembalianDAO: " + e.getMessage());
             return false;
         } finally {
             try {
