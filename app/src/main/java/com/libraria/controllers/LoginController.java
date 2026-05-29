@@ -13,7 +13,7 @@ public class LoginController extends LoginBaseController {
 
         loginView.getLoginButton().setOnAction(e -> {
             String email = loginView.getEmailField().getText().trim().toLowerCase();
-            String password = loginView.getPasswordText().trim();
+            String password = loginView.getPasswordText();
             String result = verifyLogin(email, password);
 
             if (result.equals("Success")) {
