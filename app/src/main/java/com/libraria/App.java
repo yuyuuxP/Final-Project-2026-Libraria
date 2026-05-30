@@ -5,11 +5,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    BukuBaseController dashboardController = new DashboardController();
+    LoginBaseController loginController = new LoginController();
 
     @Override
     public void start(Stage stage) {
-        dashboardController.show(stage);
+        loginController.show(stage);
     }
 
     public static void main(String[] args) {
