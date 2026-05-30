@@ -2,6 +2,8 @@ package com.libraria.controllers;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.libraria.dao.UserDAO;
+import com.libraria.utils.AlertHelper;
 import com.libraria.views.KelolaBukuView;
 
 public class KelolaBukuController extends BukuBaseController {
@@ -17,10 +19,18 @@ public class KelolaBukuController extends BukuBaseController {
             viewBukuController.show(stage);
         });
         view.getAddButton().setOnAction(e -> {
-            bukuController.show(stage);
+            if (UserDAO.getUsersRole(LoginController.getCurrentEmail()).equals("admin")) {
+                bukuController.show(stage);
+            } else {
+                AlertHelper.error("Only admins can add books.");
+            }
         });
         view.getDeleteButton().setOnAction(e -> {
-            deleteBukuController.show(stage);
+            if (UserDAO.getUsersRole(LoginController.getCurrentEmail()).equals("admin")) {
+                deleteBukuController.show(stage);
+            } else {
+                AlertHelper.error("Only admins can delete books.");
+            }
         });
         view.getBackButton().setOnAction(e -> {
             dashboardController.show(stage);
