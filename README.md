@@ -31,6 +31,7 @@ Fork repository ini ke akun Github kamu.
 
 ### Langkah 2: Clone Repository
 Clone repository yang telah di-fork laptop kamu:
+
 `git clone <https://github.com/yuyuuxP/Final-Project-2026-Libraria.git>`
 
 ### Langkah 3: Buka di Code Editor
@@ -38,6 +39,7 @@ Buka project di Visual Studio Code dan buka terminal.
 
 ### Langkah 4: Ganti Branch
 Pindah ke branch yang telah dibuat sebelumnya:
+
 `git checkout nama-branch-anda`
 contoh: ```git checkout H071251007```
 
@@ -49,6 +51,7 @@ contoh: ```git checkout H071251007```
   
 ### Langkah 6: Sinkronisasi dengan Main
 Selalu sinkronisasi kode kamu dengan branch main secara berkala:
+
 ```git checkout main```
 ```git pull origin main```
 ```git checkout nama-branch-anda```
@@ -56,7 +59,8 @@ Selalu sinkronisasi kode kamu dengan branch main secara berkala:
 
 ---
 
-## 🗂️ Struktur Proyek
+## 🗂️ Struktur Folder Proyek
+```text
 Final-Project-2026-Libraria/
 ├── app/
 │   ├── src/main/java/com/libraria/
@@ -117,6 +121,7 @@ Final-Project-2026-Libraria/
 ├── gradle/
 │   └── libs.versions.toml
 └── settings.gradle
+```
 
 ---
 
