@@ -98,7 +98,7 @@ public class CreateAccountController extends LoginBaseController implements Runn
             if (validator.isEmailValid(email)) {
                 if (!data.isEmailExists(email)) {
                     if (validator.isFieldNotEmpty(password)) {
-                        if (validator.isPasswordContainsSpace(password)) {
+                        if (!validator.isPasswordContainsSpace(password)) {
                             if (validator.isPasswordValid(password)) {
                                 if (validator.isFieldNotEmpty(secretQuestion)) {
                                     if (validator.isSecretQuestionValid(secretQuestion)) {

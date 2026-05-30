@@ -13,7 +13,7 @@ public class LoginController extends LoginBaseController {
 
         loginView.getLoginButton().setOnAction(e -> {
             String email = loginView.getEmailField().getText().trim().toLowerCase();
-            String password = loginView.getPasswordText();
+            String password = loginView.getPasswordText().trim();
             String result = verifyLogin(email, password);
 
             if (result.equals("Success")) {
@@ -54,7 +54,7 @@ public class LoginController extends LoginBaseController {
     public String verifyLogin(String email, String password) {
         if (validator.isFieldNotEmpty(email) && validator.isFieldNotEmpty(password)) {
             if (validator.isEmailValid(email)) {
-                if (validator.isPasswordContainsSpace(password)) {
+                if (!validator.isPasswordContainsSpace(password)) {
                     if (validator.isPasswordValid(password)) {
                         Member member = new Member(email, password);
                         if (data.login(member)) {
