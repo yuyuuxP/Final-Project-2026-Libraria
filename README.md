@@ -5,19 +5,19 @@ Aplikasi manajemen perpustakaan desktop berbasis Java dengan antarmuka grafis Ja
 
 ## ✨ Fitur
 ### Autentikasi
-- Login: validasi email dan password
-- Buat Akun: registrasi akun untuk member baru
-- Lupa Password: reset password menggunakan secret question & answer
-- Ganti Password: ubah password dari dalam aplikasi
+- **Login:** validasi email dan password
+- **Buat Akun:** registrasi akun untuk member baru
+- **Lupa Password:** reset password menggunakan secret question & answer
+- **Ganti Password:** ubah password dari dalam aplikasi
 
 ### Manajemen Buku (Admin)
-- Tambah Buku: Input judul, penulis, kategori, dan genre
-- Kelola Buku: lihat daftar seluruh buku beserta informasi lengkapnya
-- Hapus Buku: hapus buku dari koleksi perpustakaan
+- **Tambah Buku:** Input judul, penulis, kategori, dan genre
+- **Kelola Buku:** lihat daftar seluruh buku beserta informasi lengkapnya
+- **Hapus Buku:** hapus buku dari koleksi perpustakaan
 
 ### Peminjaman & Pengembalian
-- Peminjaman: cari buku berdasarkan judul dan catat nama peminjam; status buku akan otomatis berubah menjadi _Not Available_
-- Pengembalian: Proses pengembalian buku; status buku akan kembali menjadi _Available_
+- **Peminjaman:** cari buku berdasarkan judul dan catat nama peminjam; status buku akan otomatis berubah menjadi _Not Available_
+- **Pengembalian**: Proses pengembalian buku; status buku akan kembali menjadi _Available_
 
 ### Dashboard
 - Navigasi utama menuju fitur kelola buku, Peminjaman, dan Pengembalian
@@ -41,6 +41,7 @@ Buka project di Visual Studio Code dan buka terminal.
 Pindah ke branch yang telah dibuat sebelumnya:
 
 `git checkout nama-branch-anda`
+
 contoh: ```git checkout H071251007```
 
 ### Langkah 5: Push ke Branch Personal
@@ -53,8 +54,11 @@ contoh: ```git checkout H071251007```
 Selalu sinkronisasi kode kamu dengan branch main secara berkala:
 
 ```git checkout main```
+
 ```git pull origin main```
+
 ```git checkout nama-branch-anda```
+
 ```git merge main```
 
 ---
