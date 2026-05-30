@@ -6,13 +6,14 @@ import javafx.stage.Stage;
 
 public class LoginController extends LoginBaseController {
     LoginView loginView = new LoginView();
+    private static String email;
 
     @Override
     public void show(Stage stage) {
         loadScene(stage, loginView.getRoot(), "Libraria - Log In");
 
         loginView.getLoginButton().setOnAction(e -> {
-            String email = loginView.getEmailField().getText().trim().toLowerCase();
+            email = loginView.getEmailField().getText().trim().toLowerCase();
             String password = loginView.getPasswordText().trim();
             String result = verifyLogin(email, password);
 
@@ -74,5 +75,9 @@ public class LoginController extends LoginBaseController {
         } else {
             return "Email and password are required!";
         }
+    }
+
+    public static String getCurrentEmail() {
+        return email;
     }
 }
