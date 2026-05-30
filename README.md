@@ -32,7 +32,7 @@ Fork repository ini ke akun Github kamu.
 ### Langkah 2: Clone Repository
 Clone repository yang telah di-fork laptop kamu:
 
-`git clone <https://github.com/username-kamu/Final-Project-2026-Libraria.git>`
+`git clone https://github.com/username-kamu/Final-Project-2026-Libraria.git`
 
 ### Langkah 3: Buka di Code Editor
 Buka project di Visual Studio Code dan buka terminal.
@@ -42,7 +42,7 @@ Pindah ke branch yang telah dibuat sebelumnya:
 
 `git checkout nama-branch-anda`
 
-contoh: ```_git checkout H071251007_```
+contoh: `git checkout H071251007`
 
 ### Langkah 5: Push ke Branch Personal
 - Setiap perubahan akan di-push ke branch personal kamu, **bukan ke branch main**.
@@ -53,13 +53,12 @@ contoh: ```_git checkout H071251007_```
 ### Langkah 6: Sinkronisasi dengan Main
 Selalu sinkronisasi kode kamu dengan branch main secara berkala:
 
-```git checkout main```
-
-```git pull origin main```
-
-```git checkout nama-branch-anda```
-
-```git merge main```
+```text
+git checkout main
+git pull origin main
+git checkout nama-branch-anda
+git merge main
+```
 
 ---
 
