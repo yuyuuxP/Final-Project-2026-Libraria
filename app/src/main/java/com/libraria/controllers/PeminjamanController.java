@@ -97,9 +97,7 @@ public class PeminjamanController extends BukuBaseController {
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
         Scene scene = new Scene(view.getRoot(), 950, 580);
-        stage.setTitle("Libraria - Book Lending");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Lending");
     }
 
     private String kapitalisasiTeks(String input) {

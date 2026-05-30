@@ -97,9 +97,7 @@ public class DeleteBukuController extends BukuBaseController {
         });
 
         Scene scene = new Scene(view.getRoot(), 750, 580);
-        stage.setTitle("Libraria - Book Deletion");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Deletion");
     }
 
     private static void refreshTable(DeleteBukuView view) {

@@ -11,7 +11,13 @@ public abstract class LoginBaseController {
     Validator validator = new Validator();
 
     protected void loadScene(Stage stage, Parent root, String title) {
+        
         boolean wasMaximized = stage.isMaximized();
+        
+        if (!wasMaximized && !stage.isShowing()) {
+            wasMaximized = true;
+        }
+
         Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
         stage.setTitle(title);

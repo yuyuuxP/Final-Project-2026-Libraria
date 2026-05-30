@@ -27,8 +27,6 @@ public class KelolaBukuController extends BukuBaseController {
         });
 
         Scene scene = new Scene(view.getRoot(), 700, 550);
-        stage.setTitle("Libraria - Book Management");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Management");
     }
 }

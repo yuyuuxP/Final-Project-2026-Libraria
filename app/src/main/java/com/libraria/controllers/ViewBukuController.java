@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
-public class ViewBukuController extends BukuBaseController{
+public class ViewBukuController extends BukuBaseController {
     private BukuBaseController kelolaBukuController = new KelolaBukuController();
 
     @Override
@@ -32,7 +32,7 @@ public class ViewBukuController extends BukuBaseController{
                 StackPane coverMockup = new StackPane(iconBook);
                 coverMockup.setPrefHeight(100);
                 coverMockup.setStyle(
-                    "-fx-background-color: linear-gradient(to bottom, #2C426F, #172440);" +
+                    "| linear-gradient(to bottom, #2C426F, #172440);" +
                     "-fx-background-radius: 10 10 0 0;"
                 );
 
@@ -82,8 +82,6 @@ public class ViewBukuController extends BukuBaseController{
         });
 
         Scene scene = new Scene(view.getRoot(), 850, 600);
-        stage.setTitle("Libraria - Book Catalog");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Catalog");
     }
 }

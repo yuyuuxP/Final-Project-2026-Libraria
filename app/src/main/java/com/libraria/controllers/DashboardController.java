@@ -24,8 +24,6 @@ public class DashboardController extends BukuBaseController {
         });
 
         Scene scene = new Scene(view.getRoot(), 700, 450);
-        stage.setScene(scene);
-        stage.setTitle("Libraria - Dashboard");
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Dashboard");
     }
 }

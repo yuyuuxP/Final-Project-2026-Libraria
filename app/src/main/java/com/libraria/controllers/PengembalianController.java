@@ -38,11 +38,8 @@ public class PengembalianController extends BukuBaseController {
         });
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
-
         Scene scene = new Scene(view.getRoot(), 950, 580);
-        stage.setTitle("Libraria - Book Return");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Return");
     }
 
     private String kapitalisasiTeks(String input) {

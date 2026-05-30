@@ -52,9 +52,7 @@ public class BukuController extends BukuBaseController {
         });
 
         Scene scene = new Scene(view.getRoot(), 920, 580);
-        stage.setTitle("Libraria - Add New Book");
-        stage.setScene(scene);
-        stage.show();
+        aturDanTampilkanScene(stage, scene, "Libraria - Add New Book");
     }
 
     private String kapitalisasiTeks(String input) {
