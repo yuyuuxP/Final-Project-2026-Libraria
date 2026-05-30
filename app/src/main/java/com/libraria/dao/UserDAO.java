@@ -97,9 +97,10 @@ public class UserDAO {
         }
     }
 
-    public String getUsersRole(String email) {
+    public static String getUsersRole(String email) {
         String sql = "SELECT role FROM users WHERE email = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.connect();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
