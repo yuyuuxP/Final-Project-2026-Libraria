@@ -32,7 +32,9 @@ Fork repository ini ke akun Github kamu.
 ### Langkah 2: Clone Repository
 Clone repository yang telah di-fork laptop kamu:
 
-```git clone https://github.com/username-kamu/Final-Project-2026-Libraria.git```
+```text
+git clone https://github.com/username-kamu/Final-Project-2026-Libraria.git
+```
 
 ### Langkah 3: Buka di Code Editor
 Buka project di Visual Studio Code dan buka terminal.
@@ -40,7 +42,9 @@ Buka project di Visual Studio Code dan buka terminal.
 ### Langkah 4: Ganti Branch
 Pindah ke branch yang telah dibuat sebelumnya:
 
-```git checkout nama-branch-anda```
+```text
+git checkout nama-branch-anda
+```
 
 contoh: `git checkout H071251007`
 
