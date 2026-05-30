@@ -25,6 +25,7 @@ public class DeleteBukuController extends BukuBaseController {
         TableColumn<Buku, String> colJudul = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(0);
         TableColumn<Buku, String> colPenulis = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(1);
         TableColumn<Buku, String> colKategori = (TableColumn<Buku, String>) view.getTableBuku().getColumns().get(2);
+        
         Callback<TableColumn<Buku, String>, TableCell<Buku, String>> centerCellFactory = param -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -89,17 +90,20 @@ public class DeleteBukuController extends BukuBaseController {
         };
 
         colAksi.setCellFactory(cellFactory);
-        view.getTableBuku().getColumns().add(colAksi);
+        if (view.getTableBuku().getColumns().size() < 4) {
+            view.getTableBuku().getColumns().add(colAksi);
+        }
+        
         refreshTable(view);
 
         view.getKembaliButton().setOnAction(e -> {
             kelolaBukuController.show(stage);
         });
 
-        Scene scene = new Scene(view.getRoot(), 750, 580);
-        stage.setTitle("Libraria - Book Deletion");
-        stage.setScene(scene);
-        stage.show();
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
+        aturDanTampilkanScene(stage, scene, "Libraria - Book Deletion");
     }
 
     private static void refreshTable(DeleteBukuView view) {

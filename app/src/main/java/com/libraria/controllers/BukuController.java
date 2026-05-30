@@ -46,15 +46,16 @@ public class BukuController extends BukuBaseController {
                 AlertHelper.error("Failed to add new book! Please ensure all form fields are filled correctly.");
             }
         });
+
         view.getKembaliButton().setOnAction(e -> {
             bukuList.clear();
             kelolaBukuController.show(stage);
         });
 
-        Scene scene = new Scene(view.getRoot(), 920, 580);
-        stage.setTitle("Libraria - Add New Book");
-        stage.setScene(scene);
-        stage.show();
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 920;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
+        aturDanTampilkanScene(stage, scene, "Libraria - Add New Book");
     }
 
     private String kapitalisasiTeks(String input) {

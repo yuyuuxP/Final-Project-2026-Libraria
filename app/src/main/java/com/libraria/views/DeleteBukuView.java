@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -41,22 +42,21 @@ public class DeleteBukuView {
             "-fx-border-color: #E2E8F0;" +
             "-fx-border-radius: 12;" +
             "-fx-background-radius: 12;" +
-            "-fx-padding: 10;"
+            "-fx-padding: 10;" +
+            "-fx-font-size: 15px;"
         );
 
         TableColumn<Buku, String> colJudul = new TableColumn<>("Title");
         colJudul.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colJudul.setPrefWidth(220);
 
         TableColumn<Buku, String> colPenulis = new TableColumn<>("Author");
         colPenulis.setCellValueFactory(new PropertyValueFactory<>("author"));
-        colPenulis.setPrefWidth(160);
 
         TableColumn<Buku, String> colKategori = new TableColumn<>("Category");
         colKategori.setCellValueFactory(new PropertyValueFactory<>("category"));
-        colKategori.setPrefWidth(120);
 
         tableBuku.getColumns().addAll(colJudul, colPenulis, colKategori);
+        tableBuku.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
         kembaliButton = new Button("⬅ Back to Book Management");
         kembaliButton.setStyle(
@@ -75,10 +75,14 @@ public class DeleteBukuView {
         root.setPadding(new Insets(40));
         root.setStyle("-fx-background-color: #F8FAFC;");
         root.getChildren().addAll(titleLabel, descLabel, tableBuku, kembaliButton);
+
+        VBox.setVgrow(tableBuku, Priority.ALWAYS);
+        root.setMaxWidth(Double.MAX_VALUE);
+        root.setMaxHeight(Double.MAX_VALUE);
     }
 
     public boolean showConfirmationPopup(Stage ownerStage, String judulBuku) {
-        confirmResult = false; // Reset nilai awal
+        confirmResult = false; 
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.initOwner(ownerStage);

@@ -17,7 +17,7 @@ public class KelolaBukuView {
         Label titleLabel = new Label("📚 Book Management");
         titleLabel.setStyle(
             "-fx-font-family: 'Arial Black', 'Segoe UI', sans-serif;" +
-            "-fx-font-size: 38px;" +
+            "-fx-font-size: 46px;" + 
             "-fx-font-weight: bold;" +
             "-fx-text-fill: #004AAD;" +
             "-fx-alignment: center;"
@@ -32,21 +32,21 @@ public class KelolaBukuView {
         deleteButton = new Button("Delete Book");
         backButton = new Button("⬅ Back to Dashboard");
 
-        String wideFolderShape = "M 0 20 C 0 8, 8 0, 20 0 L 80 0 C 90 0, 93 6, 98 12 L 106 20 L 330 20 C 340 20, 345 25, 345 35 L 345 75 C 345 85, 335 95, 325 95 L 15 95 C 5 95, 0 85, 0 75 Z";
+        String wideFolderShape = "M 0 20 C 0 8, 8 0, 20 0 L 80 0 C 90 0, 93 6, 98 12 L 106 20 L 415 20 C 425 20, 430 25, 430 35 L 430 115 C 430 125, 420 135, 410 135 L 15 135 C 5 135, 0 125, 0 115 Z";
 
         String menuButtonStyle = 
             "-fx-shape: \"" + wideFolderShape + "\";" +
             "-fx-background-color: linear-gradient(to bottom, #2C426F, #172440);" + 
             "-fx-text-fill: #FFFFFF;" +
             "-fx-font-family: 'Segoe UI', 'Arial', sans-serif;" +
-            "-fx-font-size: 22px;" +
+            "-fx-font-size: 26px;" + 
             "-fx-font-weight: bold;" +
             "-fx-alignment: center_left;" + 
-            "-fx-padding: 15 0 0 35;" + 
-            "-fx-pref-width: 350px;" +
-            "-fx-pref-height: 95px;" +
+            "-fx-padding: 20 0 0 45;" + 
+            "-fx-pref-width: 440px;" + 
+            "-fx-pref-height: 135px;" +
             "-fx-cursor: hand;" +
-            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);";
+            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 5);";
 
         viewButton.setStyle(menuButtonStyle);
         addButton.setStyle(menuButtonStyle);
@@ -56,7 +56,7 @@ public class KelolaBukuView {
             "-fx-background-color: transparent;" +
             "-fx-text-fill: #E74C3C;" +
             "-fx-font-family: 'Segoe UI', sans-serif;" +
-            "-fx-font-size: 15px;" +
+            "-fx-font-size: 18px;" + 
             "-fx-font-weight: bold;" +
             "-fx-cursor: hand;"
         );
@@ -73,14 +73,18 @@ public class KelolaBukuView {
         backButton.setOnMouseEntered(e -> backButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #C0392B; -fx-underline: true; -fx-cursor: hand;"));
         backButton.setOnMouseExited(e -> backButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #E74C3C;"));
 
-        VBox menuContainer = new VBox(15);
+        VBox menuContainer = new VBox(22);
         menuContainer.setAlignment(Pos.CENTER);
         menuContainer.getChildren().addAll(viewButton, addButton, deleteButton);
 
-        root = new VBox(40);
+        root = new VBox(60); 
         root.setAlignment(Pos.CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 30;");
+        root.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 40;");
         root.getChildren().addAll(titleContainer, menuContainer, backButton);
+        root.setMaxWidth(Double.MAX_VALUE);
+        root.setMaxHeight(Double.MAX_VALUE);
+        menuContainer.setMaxWidth(Double.MAX_VALUE);
+        titleContainer.setMaxWidth(Double.MAX_VALUE);
     }
 
     public VBox getRoot() {

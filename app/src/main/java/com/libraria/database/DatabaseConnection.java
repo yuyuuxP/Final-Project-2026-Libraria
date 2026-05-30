@@ -31,6 +31,8 @@ public class DatabaseConnection {
                 )
             """);
 
+            stmt.execute("INSERT OR IGNORE INTO users (email, password, secretquestion, secretanswer) VALUES ('admin@libraria.com', 'admin12345', '-', '-')");
+
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS books(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
