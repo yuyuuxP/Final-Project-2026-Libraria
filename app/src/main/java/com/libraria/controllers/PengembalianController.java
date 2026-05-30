@@ -38,7 +38,9 @@ public class PengembalianController extends BukuBaseController {
         });
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
-        Scene scene = new Scene(view.getRoot(), 950, 580);
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 950;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
         aturDanTampilkanScene(stage, scene, "Libraria - Book Return");
     }
 

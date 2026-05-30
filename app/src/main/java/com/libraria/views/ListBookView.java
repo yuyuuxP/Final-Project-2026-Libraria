@@ -6,10 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class ListBookView {
-
     private VBox root;
     private FlowPane catalogGrid;
     private ScrollPane scrollPane;
@@ -39,7 +39,6 @@ public class ListBookView {
 
         scrollPane = new ScrollPane(catalogGrid);
         scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(400);
         scrollPane.setStyle(
             "-fx-background: #F8FAFC;" +
             "-fx-background-color: #F8FAFC;" +
@@ -64,6 +63,10 @@ public class ListBookView {
         root.setPadding(new Insets(35, 20, 25, 20));
         root.setStyle("-fx-background-color: #F8FAFC;");
         root.getChildren().addAll(headerContainer, scrollPane, kembaliButton);
+
+        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+        root.setMaxWidth(Double.MAX_VALUE);
+        root.setMaxHeight(Double.MAX_VALUE);
     }
 
     public VBox getRoot() { 

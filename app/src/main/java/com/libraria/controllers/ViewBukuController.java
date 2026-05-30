@@ -17,7 +17,6 @@ public class ViewBukuController extends BukuBaseController {
     @Override
     public void show(Stage stage) {
         ListBookView view = new ListBookView();
-
         ArrayList<Buku> listBuku = bukuService.ambilSemuaBuku();
 
         if (listBuku.isEmpty()) {
@@ -32,7 +31,7 @@ public class ViewBukuController extends BukuBaseController {
                 StackPane coverMockup = new StackPane(iconBook);
                 coverMockup.setPrefHeight(100);
                 coverMockup.setStyle(
-                    "| linear-gradient(to bottom, #2C426F, #172440);" +
+                    "-fx-background-color: linear-gradient(to bottom, #2C426F, #172440);" +
                     "-fx-background-radius: 10 10 0 0;"
                 );
 
@@ -54,34 +53,36 @@ public class ViewBukuController extends BukuBaseController {
                 bookCard.setPrefWidth(160);
                 bookCard.setMaxWidth(160);
                 bookCard.setPrefHeight(210);
-                bookCard.setStyle(
+                
+                String baseCardStyle = 
                     "-fx-background-color: #FFFFFF;" +
                     "-fx-background-radius: 12;" +
                     "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 8, 0, 0, 3);" +
-                    "-fx-cursor: hand;"
-                );
+                    "-fx-cursor: hand;";
+                    
+                bookCard.setStyle(baseCardStyle);
                 
                 bookCard.setOnMouseEntered(e -> bookCard.setStyle(
                     "-fx-background-color: #FFFFFF;" +
                     "-fx-background-radius: 12;" +
                     "-fx-effect: dropshadow(three-pass-box, rgba(0,74,173,0.2), 12, 0, 0, 5);" +
-                    "-fx-transform: translateY(-3px);"
+                    "-fx-transform: translateY(-3px);" +
+                    "-fx-cursor: hand;"
                 ));
-                bookCard.setOnMouseExited(e -> bookCard.setStyle(
-                    "-fx-background-color: #FFFFFF;" +
-                    "-fx-background-radius: 12;" +
-                    "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 8, 0, 0, 3);"
-                ));
+                bookCard.setOnMouseExited(e -> bookCard.setStyle(baseCardStyle));
 
                 bookCard.getChildren().addAll(coverMockup, infoBox);
                 view.getCatalogGrid().getChildren().add(bookCard);
             }
         }
+        
         view.getKembaliButton().setOnAction(e -> {
             kelolaBukuController.show(stage);
         });
 
-        Scene scene = new Scene(view.getRoot(), 850, 600);
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
         aturDanTampilkanScene(stage, scene, "Libraria - Book Catalog");
     }
 }

@@ -26,7 +26,9 @@ public class KelolaBukuController extends BukuBaseController {
             dashboardController.show(stage);
         });
 
-        Scene scene = new Scene(view.getRoot(), 700, 550);
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
         aturDanTampilkanScene(stage, scene, "Libraria - Book Management");
     }
 }

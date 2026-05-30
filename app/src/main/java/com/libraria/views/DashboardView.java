@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class DashboardView {
-    
     private VBox root;
     private Button bukuButton;
     private Button pinjamButton;
@@ -17,7 +16,7 @@ public class DashboardView {
     public DashboardView() {
         String fontName = "Segoe Script";
         try {
-            Font customFont = Font.loadFont(getClass().getResourceAsStream("/com/libraria/styles/Signature.ttf"), 46);
+            Font customFont = Font.loadFont(getClass().getResourceAsStream("/com/libraria/styles/Signature.ttf"), 58);
             if (customFont != null) {
                 fontName = customFont.getFamily();
             }
@@ -26,9 +25,9 @@ public class DashboardView {
         }
 
         Label welcomeText = new Label("Welcome to ");
-        welcomeText.setStyle("-fx-font-family: 'Arial Black', 'Segoe UI', sans-serif; -fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #004AAD;");
+        welcomeText.setStyle("-fx-font-family: 'Arial Black', 'Segoe UI', sans-serif; -fx-font-size: 46px; -fx-font-weight: bold; -fx-text-fill: #004AAD;");
         Label brandText = new Label("Libraria !");
-        brandText.setStyle("-fx-font-family: '" + fontName + "'; -fx-font-size: 46px; -fx-font-weight: bold; -fx-text-fill: #004AAD; -fx-padding: -5 0 0 10;");
+        brandText.setStyle("-fx-font-family: '" + fontName + "'; -fx-font-size: 58px; -fx-font-weight: bold; -fx-text-fill: #004AAD; -fx-padding: -8 0 0 12;"); 
         
         HBox titleContainer = new HBox();
         titleContainer.setAlignment(Pos.BASELINE_CENTER);
@@ -38,22 +37,22 @@ public class DashboardView {
         pinjamButton = new Button("Borrow\nBook");
         kembaliButton = new Button("Return\nBook");
 
-        String folderShape = "M 0 25 C 0 10, 10 0, 25 0 L 75 0 C 85 0, 90 8, 97 15 L 107 24 L 195 24 C 205 24, 210 29, 210 39 L 210 150 C 210 160, 200 170, 190 170 L 15 170 C 5 170, 0 160, 0 150 Z";
+        String folderShape = "M 0 25 C 0 10, 10 0, 25 0 L 85 0 C 95 0, 100 8, 107 15 L 117 24 L 235 24 C 245 24, 250 29, 250 39 L 250 190 C 250 200, 240 210, 230 210 L 15 210 C 5 210, 0 200, 0 190 Z";
 
         String folderStyle = 
             "-fx-shape: \"" + folderShape + "\";" +
             "-fx-background-color: linear-gradient(to bottom, #2C426F, #172440);" + 
             "-fx-text-fill: #FFFFFF;" +
             "-fx-font-family: 'Segoe UI', 'Arial', sans-serif;" +
-            "-fx-font-size: 22px;" +
+            "-fx-font-size: 26px;" + 
             "-fx-font-weight: bold;" +
             "-fx-text-alignment: left;" +
             "-fx-alignment: bottom-left;" + 
-            "-fx-padding: 0 0 30 25;" + 
-            "-fx-pref-width: 185px;" +
-            "-fx-pref-height: 150px;" +
+            "-fx-padding: 0 0 35 30;" + 
+            "-fx-pref-width: 240px;" +  
+            "-fx-pref-height: 190px;" + 
             "-fx-cursor: hand;" +
-            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);";
+            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 12, 0, 0, 6);";
 
         bukuButton.setStyle(folderStyle);
         pinjamButton.setStyle(folderStyle);
@@ -68,14 +67,19 @@ public class DashboardView {
         kembaliButton.setOnMouseEntered(e -> kembaliButton.setStyle(folderStyle + "-fx-background-color: linear-gradient(to bottom, #39558F, #1E2F54);"));
         kembaliButton.setOnMouseExited(e -> kembaliButton.setStyle(folderStyle));
 
-        HBox buttonContainer = new HBox(30); 
+        HBox buttonContainer = new HBox(45);
         buttonContainer.setAlignment(Pos.CENTER);
         buttonContainer.getChildren().addAll(bukuButton, pinjamButton, kembaliButton);
 
-        root = new VBox(55); 
+        root = new VBox(75);
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 40;"); 
         root.getChildren().addAll(titleContainer, buttonContainer);
+
+        root.setMaxWidth(Double.MAX_VALUE);
+        root.setMaxHeight(Double.MAX_VALUE);
+        buttonContainer.setMaxWidth(Double.MAX_VALUE);
+        titleContainer.setMaxWidth(Double.MAX_VALUE);
     }
 
     public VBox getRoot() {

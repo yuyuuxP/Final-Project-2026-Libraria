@@ -22,6 +22,10 @@ public class PeminjamanController extends BukuBaseController {
         this.dashboardController = dashboardController;
     }
 
+    public PeminjamanController() {
+        //TODO Auto-generated constructor stub
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public void show(Stage stage) {
@@ -30,29 +34,34 @@ public class PeminjamanController extends BukuBaseController {
         TableColumn<Peminjaman, String> colJudul = (TableColumn<Peminjaman, String>) view.getTableBuku().getColumns().get(0);
         TableColumn<Peminjaman, String> colPenulis = (TableColumn<Peminjaman, String>) view.getTableBuku().getColumns().get(1);
         TableColumn<Peminjaman, String> colStatus = (TableColumn<Peminjaman, String>) view.getTableBuku().getColumns().get(2);
+        
         colJudul.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("Title"));
         colPenulis.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("Author"));
         colStatus.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("Status"));
+        
         colStatus.setCellFactory(param -> new TableCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("");
+        @Override
+        protected void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+                setStyle("");
+            } else {
+                String statusBersih = item.trim();
+                setAlignment(Pos.CENTER);
+                if (statusBersih.equalsIgnoreCase("Tersedia") || statusBersih.equalsIgnoreCase("Available")) {
+                    setText("Available");
+                    setTextFill(Color.web("#166534")); 
+                    setStyle("-fx-font-weight: bold;");
                 } else {
-                    setText(item);
-                    setAlignment(Pos.CENTER);
-                    if (item.equalsIgnoreCase("Tersedia")) {
-                        setTextFill(Color.web("#166534")); // Hijau
-                        setStyle("-fx-font-weight: bold;");
-                    } else {
-                        setTextFill(Color.web("#E74C3C")); // Merah
-                        setStyle("-fx-font-weight: bold;");
-                    }
+                    setText("Not Available");
+                    setTextFill(Color.web("#E74C3C"));
+                    setStyle("-fx-font-weight: bold;");
                 }
             }
-        });
+        }
+    });
+        
         katalogList.clear();
         katalogList.addAll(peminjamanService.ambilKatalogPeminjaman());
         view.getTableBuku().setItems(katalogList);
@@ -78,7 +87,7 @@ public class PeminjamanController extends BukuBaseController {
                 AlertHelper.error("Failed! Book '" + judulProses + "' not found in the catalog. Please check the title and try again.");
                 return;
             }
-            if (bukuTarget.getStatus().equalsIgnoreCase("Tidak Tersedia")) {
+            if (bukuTarget.getStatus().equalsIgnoreCase("Not Available")) {
                 AlertHelper.error("Failed! Book '" + judulProses + "' is currently not available (already borrowed).");
                 return;
             }
@@ -96,7 +105,10 @@ public class PeminjamanController extends BukuBaseController {
         });
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
-        Scene scene = new Scene(view.getRoot(), 950, 580);
+
+        double currentWidth = stage.isMaximized() ? stage.getWidth() : 950;
+        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
+        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
         aturDanTampilkanScene(stage, scene, "Libraria - Book Lending");
     }
 
