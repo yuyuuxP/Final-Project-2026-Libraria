@@ -5,7 +5,6 @@ import com.libraria.utils.AlertHelper;
 import com.libraria.views.TambahBukuView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class BukuController extends BukuBaseController {
@@ -52,10 +51,7 @@ public class BukuController extends BukuBaseController {
             kelolaBukuController.show(stage);
         });
 
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 920;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Add New Book");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Add New Book", 920, 580);
     }
 
     private String kapitalisasiTeks(String input) {

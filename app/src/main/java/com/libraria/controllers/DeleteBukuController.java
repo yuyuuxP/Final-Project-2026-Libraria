@@ -6,7 +6,6 @@ import com.libraria.views.DeleteBukuView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -100,10 +99,7 @@ public class DeleteBukuController extends BukuBaseController {
             kelolaBukuController.show(stage);
         });
 
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Book Deletion");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Deletion", 850, 600);
     }
 
     private static void refreshTable(DeleteBukuView view) {

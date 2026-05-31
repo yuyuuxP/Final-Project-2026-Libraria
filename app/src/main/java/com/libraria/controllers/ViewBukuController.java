@@ -4,7 +4,6 @@ import com.libraria.models.Buku;
 import com.libraria.views.ListBookView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -80,9 +79,6 @@ public class ViewBukuController extends BukuBaseController {
             kelolaBukuController.show(stage);
         });
 
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Book Catalog");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Catalog", 850, 600);
     }
 }

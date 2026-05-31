@@ -35,12 +35,17 @@ public class ForgotPasswordView {
             "-fx-cursor: hand;";
 
     private String fieldStyle =
-            "-fx-background-color: #f0f0f0;" +
-            "-fx-background-radius: 24;" +
+            "-fx-background-color: transparent;" +
             "-fx-border-color: transparent;" +
             "-fx-pref-height: 52px;" +
-            "-fx-pref-width: 420px;" +
             "-fx-font-size: 14px;" +
+            "-fx-padding: 0 8 0 0;";
+
+    private String fieldBoxStyle =
+            "-fx-background-color: #f0f0f0;" +
+            "-fx-background-radius: 24;" +
+            "-fx-pref-height: 52px;" +
+            "-fx-pref-width: 420px;" +
             "-fx-padding: 0 16 0 16;";
 
     public ForgotPasswordView() {
@@ -62,6 +67,14 @@ public class ForgotPasswordView {
         emailField = new TextField();
         emailField.setPromptText("Email Address");
         emailField.setStyle(fieldStyle);
+
+        Label emailIcon = new Label("✉");
+        emailIcon.setStyle("-fx-font-size: 32px; -fx-text-fill: #888888; -fx-font-weight: bold;");
+        HBox emailBox = new HBox(-6, emailIcon, emailField);
+        emailIcon.setTranslateX(-8);
+        emailBox.setAlignment(Pos.CENTER_LEFT);
+        emailBox.setStyle(fieldBoxStyle);
+        HBox.setHgrow(emailField, Priority.ALWAYS);
 
         errorLabel = new Label("");
         errorLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #cc0000;");
@@ -95,7 +108,7 @@ public class ForgotPasswordView {
         card.getChildren().addAll(
             titleLabel,
             subtitleLabel,
-            emailField,
+            emailBox,
             errorLabel,
             submitButton,
             loginLink,

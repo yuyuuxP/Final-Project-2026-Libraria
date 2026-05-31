@@ -1,6 +1,5 @@
 package com.libraria.controllers;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.libraria.views.DashboardView;
 
@@ -22,11 +21,7 @@ public class DashboardController extends BukuBaseController {
         view.getKembaliButton().setOnAction(e -> {
             pengembalianController.show(stage);
         });
-
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
         
-        aturDanTampilkanScene(stage, scene, "Libraria - Dashboard");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Dashboard", 850, 600);
     }
 }
