@@ -52,6 +52,16 @@ public class ForgotPasswordView {
         buildView();
     }
 
+    private TextFormatter<String> makeFormatter(int limit) {
+        return new TextFormatter<>(change -> {
+            if (change.getControlNewText().length() <= limit) {
+                return change;
+            } else {
+                return null;
+            }
+        });
+    }
+
     private void buildView() {
 
         Label titleLabel = new Label("Forgot Password");
@@ -67,6 +77,7 @@ public class ForgotPasswordView {
         emailField = new TextField();
         emailField.setPromptText("Email Address");
         emailField.setStyle(fieldStyle);
+        emailField.setTextFormatter(makeFormatter(100));
 
         Label emailIcon = new Label("✉");
         emailIcon.setStyle("-fx-font-size: 32px; -fx-text-fill: #888888; -fx-font-weight: bold;");

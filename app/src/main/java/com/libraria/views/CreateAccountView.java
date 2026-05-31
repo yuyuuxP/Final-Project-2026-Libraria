@@ -66,6 +66,16 @@ public class CreateAccountView {
         HBox.setHgrow(field, Priority.ALWAYS);
         return box;
     }
+
+    private TextFormatter<String> makeFormatter(int limit) {
+        return new TextFormatter<>(change -> {
+            if (change.getControlNewText().length() <= limit) {
+                return change;
+            } else {
+                return null;
+            }
+        });
+    }
     
     private void buildView() {
         Label titleLabel = new Label("Sign Up");
@@ -92,6 +102,7 @@ public class CreateAccountView {
         emailField = new TextField();
         emailField.setPromptText("Email Address");
         emailField.setStyle(fieldStyle + "-fx-padding: 0 8 0 0;");
+        emailField.setTextFormatter(makeFormatter(100));
         
         Label emailIcon = new Label("✉");
         emailIcon.setStyle("-fx-font-size: 32px; -fx-text-fill: #888888; -fx-font-weight: bold;");
@@ -104,10 +115,12 @@ public class CreateAccountView {
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.setStyle(fieldStyle + "-fx-padding: 0 40 0 0;");
+        passwordField.setTextFormatter(makeFormatter(64));
 
         passwordVisible = new TextField();
         passwordVisible.setPromptText("Password");
         passwordVisible.setStyle(fieldStyle + "-fx-padding: 0 40 0 0;");
+        passwordVisible.setTextFormatter(makeFormatter(64));
         passwordVisible.setVisible(false);
         passwordVisible.setManaged(false);
 
@@ -152,11 +165,13 @@ public class CreateAccountView {
         secretQuestionField = new TextField();
         secretQuestionField.setPromptText("Secret Question");
         secretQuestionField.setStyle(fieldStyle);
+        secretQuestionField.setTextFormatter(makeFormatter(150));
         HBox secretQuestionBox = buildIconField("❓", secretQuestionField);
 
         secretAnswerField = new TextField();
         secretAnswerField.setPromptText("Secret Answer");
         secretAnswerField.setStyle(fieldStyle);
+        secretAnswerField.setTextFormatter(makeFormatter(100));
         HBox secretAnswerBox = buildIconField("💬", secretAnswerField);
 
         errorLabel = new Label("");

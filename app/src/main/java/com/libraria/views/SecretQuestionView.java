@@ -10,7 +10,7 @@ public class SecretQuestionView {
     private Label questionLabel;
     private TextField answerField;
     private Button submitButton;
-    private Hyperlink findUsernameLink;
+    private Hyperlink findEmailLink;
     private Label errorLabel;
     private VBox root;
 
@@ -52,6 +52,16 @@ public class SecretQuestionView {
         buildView();
     }
 
+    private TextFormatter<String> makeFormatter(int limit) {
+        return new TextFormatter<>(change -> {
+            if (change.getControlNewText().length() <= limit) {
+                return change;
+            } else {
+                return null;
+            }
+        });
+    }
+
     private void buildView() {
 
         Label titleLabel = new Label("Security Question");
@@ -76,6 +86,7 @@ public class SecretQuestionView {
         answerField = new TextField();
         answerField.setPromptText("Your Answer");
         answerField.setStyle(fieldStyle);
+        answerField.setTextFormatter(makeFormatter(100));
 
         Label answerIcon = new Label("💬");
         answerIcon.setStyle("-fx-font-size: 16px; -fx-text-fill: #888888;");
@@ -92,8 +103,8 @@ public class SecretQuestionView {
         submitButton.setOnMouseEntered(e -> submitButton.setStyle(buttonHoverStyle));
         submitButton.setOnMouseExited(e -> submitButton.setStyle(buttonStyle));
 
-        findUsernameLink = new Hyperlink("Back to Find Username");
-        findUsernameLink.setStyle(
+        findEmailLink = new Hyperlink("Back to Find Email");
+        findEmailLink.setStyle(
             "-fx-font-size: 13px;" +
             "-fx-text-fill: #1a3fa0;" +
             "-fx-font-weight: bold;" +
@@ -110,7 +121,7 @@ public class SecretQuestionView {
             answerBox,
             errorLabel,
             submitButton,
-            findUsernameLink
+            findEmailLink
         );
 
         root = new VBox();
@@ -132,8 +143,8 @@ public class SecretQuestionView {
         return submitButton;
     }
 
-    public Hyperlink getFindUsernameLink() {
-        return findUsernameLink;
+    public Hyperlink getFindEmailLink() {
+        return findEmailLink;
     }
 
     public Label getErrorLabel() {

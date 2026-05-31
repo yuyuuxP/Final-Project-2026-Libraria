@@ -64,9 +64,14 @@ public class ForgotPasswordController extends LoginBaseController implements Run
 
     public void showSecretQuestion(Stage stage) {
         loadScene(stage, secretQuestionView.getRoot(), "Libraria - Secret Question");
-        attempts = 3;
+        attempts = 5;
         member = new Member();
-        member.setEmail(email);
+
+        if (LoginController.getCurrentEmail() == null) {
+            member.setEmail(email);
+        } else {
+            member.setEmail(LoginController.getCurrentEmail());
+        }
 
         secretQuestionView.getQuestionLabel().setText(data.getSecretQuestion(member));
 
@@ -95,7 +100,7 @@ public class ForgotPasswordController extends LoginBaseController implements Run
             }
         });
 
-        secretQuestionView.getFindUsernameLink().setOnAction(e -> {
+        secretQuestionView.getFindEmailLink().setOnAction(e -> {
             show(stage);
         });
 
