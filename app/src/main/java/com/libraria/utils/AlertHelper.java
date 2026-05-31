@@ -1,6 +1,8 @@
 package com.libraria.utils;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 
 public class AlertHelper {
 
@@ -34,5 +36,18 @@ public class AlertHelper {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public static void showConfirm(String title, String message, Stage stage, Runnable onConfirm) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initOwner(stage);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                onConfirm.run();
+            }
+        });
     }
 }

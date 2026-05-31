@@ -77,8 +77,8 @@ public class KelolaBukuView {
         menuContainer.setAlignment(Pos.CENTER);
         menuContainer.getChildren().addAll(viewButton, addButton, deleteButton);
 
-        root = new VBox(60); 
-        root.setAlignment(Pos.CENTER);
+        root = new VBox(30); 
+        root.setAlignment(Pos.TOP_CENTER);
         root.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 40;");
         root.getChildren().addAll(titleContainer, menuContainer, backButton);
         root.setMaxWidth(Double.MAX_VALUE);

@@ -72,7 +72,7 @@ public class DashboardView {
         buttonContainer.getChildren().addAll(bukuButton, pinjamButton, kembaliButton);
 
         root = new VBox(75);
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_CENTER);
         root.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 40;"); 
         root.getChildren().addAll(titleContainer, buttonContainer);
 

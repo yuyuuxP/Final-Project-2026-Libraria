@@ -23,5 +23,6 @@ public class DashboardController extends BukuBaseController {
         });
         
         aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Dashboard", 850, 600);
+        new ProfileNavbarController(stage, LoginController.getCurrentEmail(), view.getRoot());
     }
 }

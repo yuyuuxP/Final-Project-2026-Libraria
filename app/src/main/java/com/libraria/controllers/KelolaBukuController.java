@@ -36,5 +36,6 @@ public class KelolaBukuController extends BukuBaseController {
         });
 
         aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Management", 850, 600);
+        new ProfileNavbarController(stage, LoginController.getCurrentEmail(), view.getRoot());
     }
 }
