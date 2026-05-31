@@ -39,13 +39,17 @@ public class LoginView {
             "-fx-cursor: hand;";
 
     private String fieldStyle =
-            "-fx-background-color: #f0f0f0;" +
-            "-fx-background-radius: 24;" +
+            "-fx-background-color: transparent;" +
             "-fx-border-color: transparent;" +
             "-fx-pref-height: 52px;" +
+            "-fx-font-size: 14px;";
+
+    private String fieldBoxStyle =
+            "-fx-background-color: #f0f0f0;" +
+            "-fx-background-radius: 24;" +
+            "-fx-pref-height: 52px;" +
             "-fx-pref-width: 420px;" +
-            "-fx-font-size: 14px;" +
-            "-fx-padding: 0 40 0 16;";
+            "-fx-padding: 0 16 0 16;";
 
     public LoginView() {
         buildView();
@@ -76,15 +80,23 @@ public class LoginView {
 
         emailField = new TextField();
         emailField.setPromptText("Email Address");
-        emailField.setStyle(fieldStyle);
+        emailField.setStyle(fieldStyle + "-fx-padding: 0 8 0 0;");
+        
+        Label emailIcon = new Label("✉");
+        emailIcon.setStyle("-fx-font-size: 32px; -fx-text-fill: #888888; -fx-font-weight: bold;");
+        HBox emailBox = new HBox(-6, emailIcon, emailField);
+        emailIcon.setTranslateX(-8);
+        emailBox.setAlignment(Pos.CENTER_LEFT);
+        emailBox.setStyle(fieldBoxStyle);
+        HBox.setHgrow(emailField, Priority.ALWAYS);
 
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-        passwordField.setStyle(fieldStyle);
+        passwordField.setStyle(fieldStyle + "-fx-padding: 0 40 0 0;");
 
         passwordVisible = new TextField();
         passwordVisible.setPromptText("Password");
-        passwordVisible.setStyle(fieldStyle);
+        passwordVisible.setStyle(fieldStyle + "-fx-padding: 0 40 0 0;");
         passwordVisible.setVisible(false);
         passwordVisible.setManaged(false);
 
@@ -113,10 +125,18 @@ public class LoginView {
             }
         });
 
-        StackPane passwordPane = new StackPane();
+        Label lockIcon = new Label("🔒");
+        lockIcon.setStyle("-fx-font-size: 16px; -fx-text-fill: #888888;");
+
+        StackPane passwordStack = new StackPane();
         StackPane.setAlignment(togglePassword, Pos.CENTER_RIGHT);
         togglePassword.setTranslateX(-10);
-        passwordPane.getChildren().addAll(passwordField, passwordVisible, togglePassword);
+        passwordStack.getChildren().addAll(passwordField, passwordVisible, togglePassword);
+        HBox.setHgrow(passwordStack, Priority.ALWAYS);
+
+        HBox passwordBox = new HBox(10, lockIcon, passwordStack);
+        passwordBox.setAlignment(Pos.CENTER_LEFT);
+        passwordBox.setStyle(fieldBoxStyle);
 
         forgotPasswordLink = new Hyperlink("Forgot password?");
         forgotPasswordLink.setStyle(
@@ -139,8 +159,8 @@ public class LoginView {
         card.getChildren().addAll(
             titleLabel,
             subtitleBox,
-            emailField,
-            passwordPane,
+            emailBox,
+            passwordBox,
             forgotPasswordLink,
             errorLabel,
             loginButton

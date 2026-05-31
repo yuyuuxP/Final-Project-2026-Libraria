@@ -35,12 +35,17 @@ public class SecretQuestionView {
             "-fx-cursor: hand;";
 
     private String fieldStyle =
-            "-fx-background-color: #f0f0f0;" +
-            "-fx-background-radius: 24;" +
+            "-fx-background-color: transparent;" +
             "-fx-border-color: transparent;" +
             "-fx-pref-height: 52px;" +
-            "-fx-pref-width: 420px;" +
             "-fx-font-size: 14px;" +
+            "-fx-padding: 0 8 0 0;";
+
+    private String fieldBoxStyle =
+            "-fx-background-color: #f0f0f0;" +
+            "-fx-background-radius: 24;" +
+            "-fx-pref-height: 52px;" +
+            "-fx-pref-width: 420px;" +
             "-fx-padding: 0 16 0 16;";
 
     public SecretQuestionView() {
@@ -72,6 +77,13 @@ public class SecretQuestionView {
         answerField.setPromptText("Your Answer");
         answerField.setStyle(fieldStyle);
 
+        Label answerIcon = new Label("💬");
+        answerIcon.setStyle("-fx-font-size: 16px; -fx-text-fill: #888888;");
+        HBox answerBox = new HBox(10, answerIcon, answerField);
+        answerBox.setAlignment(Pos.CENTER_LEFT);
+        answerBox.setStyle(fieldBoxStyle);
+        HBox.setHgrow(answerField, Priority.ALWAYS);
+
         errorLabel = new Label("");
         errorLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #cc0000;");
 
@@ -95,7 +107,7 @@ public class SecretQuestionView {
             titleLabel,
             subtitleLabel,
             questionLabel,
-            answerField,
+            answerBox,
             errorLabel,
             submitButton,
             findUsernameLink

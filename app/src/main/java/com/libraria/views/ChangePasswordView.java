@@ -41,16 +41,35 @@ public class ChangePasswordView {
             "-fx-cursor: hand;";
 
     private String fieldStyle =
-            "-fx-background-color: #f0f0f0;" +
-            "-fx-background-radius: 24;" +
+            "-fx-background-color: transparent;" +
             "-fx-border-color: transparent;" +
             "-fx-pref-height: 52px;" +
-            "-fx-pref-width: 420px;" +
             "-fx-font-size: 14px;" +
-            "-fx-padding: 0 40 0 16;";
+            "-fx-padding: 0 40 0 0;";
+
+    private String fieldBoxStyle =
+            "-fx-background-color: #f0f0f0;" +
+            "-fx-background-radius: 24;" +
+            "-fx-pref-height: 52px;" +
+            "-fx-pref-width: 420px;" +
+            "-fx-padding: 0 16 0 16;";
 
     public ChangePasswordView() {
         buildView();
+    }
+
+    private HBox buildPasswordBox(PasswordField pField, TextField pVisible, Button toggle) {
+        Label lockIcon = new Label("🔒");
+        lockIcon.setStyle("-fx-font-size: 16px; -fx-text-fill: #888888;");
+        StackPane stack = new StackPane();
+        StackPane.setAlignment(toggle, Pos.CENTER_RIGHT);
+        toggle.setTranslateX(-10);
+        stack.getChildren().addAll(pField, pVisible, toggle);
+        HBox.setHgrow(stack, Priority.ALWAYS);
+        HBox box = new HBox(10, lockIcon, stack);
+        box.setAlignment(Pos.CENTER_LEFT);
+        box.setStyle(fieldBoxStyle);
+        return box;
     }
 
     private void buildView() {
@@ -100,10 +119,7 @@ public class ChangePasswordView {
             }
         });
 
-        StackPane passwordPane = new StackPane();
-        StackPane.setAlignment(togglePassword, Pos.CENTER_RIGHT);
-        togglePassword.setTranslateX(-10);
-        passwordPane.getChildren().addAll(passwordField, passwordVisible, togglePassword);
+        HBox passwordBox = buildPasswordBox(passwordField, passwordVisible, togglePassword);
 
         confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Confirm New Password");
@@ -140,10 +156,7 @@ public class ChangePasswordView {
             }
         });
 
-        StackPane confirmPasswordPane = new StackPane();
-        StackPane.setAlignment(toggleConfirmPassword, Pos.CENTER_RIGHT);
-        toggleConfirmPassword.setTranslateX(-10);
-        confirmPasswordPane.getChildren().addAll(confirmPasswordField, confirmPasswordVisible, toggleConfirmPassword);
+        HBox confirmPasswordBox = buildPasswordBox(confirmPasswordField, confirmPasswordVisible, toggleConfirmPassword);
 
         errorLabel = new Label("");
         errorLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #cc0000;");
@@ -164,8 +177,8 @@ public class ChangePasswordView {
         card.getChildren().addAll(
             titleLabel,
             subtitleLabel,
-            passwordPane,
-            confirmPasswordPane,
+            passwordBox,
+            confirmPasswordBox,
             errorLabel,
             successLabel,
             submitButton
@@ -224,5 +237,5 @@ public class ChangePasswordView {
 
     public VBox getRoot() {
         return root;
-    }   
+    }
 }
