@@ -80,5 +80,6 @@ public class ViewBukuController extends BukuBaseController {
         });
 
         aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Catalog", 850, 600);
+        new ProfileNavbarController(stage, LoginController.getCurrentEmail(), view.getRoot());
     }
 }

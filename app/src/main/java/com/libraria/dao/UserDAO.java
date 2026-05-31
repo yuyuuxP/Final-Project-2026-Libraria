@@ -42,6 +42,18 @@ public class UserDAO {
             return false;
         }
     }
+
+    public static boolean deleteAccount(String email) {
+        String sql = "DELETE FROM users WHERE email = ?";
+        try (Connection connection = DatabaseConnection.connect();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, email);
+            return statement.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
     public boolean isEmailExists(String email) {
         String sql = "SELECT COUNT(*) FROM users WHERE email = ?";

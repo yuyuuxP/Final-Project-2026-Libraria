@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class ChangePasswordView {
-
     private PasswordField passwordField;
     private TextField passwordVisible;
     private Button togglePassword;
@@ -72,6 +71,16 @@ public class ChangePasswordView {
         return box;
     }
 
+    private TextFormatter<String> makeFormatter(int limit) {
+        return new TextFormatter<>(change -> {
+            if (change.getControlNewText().length() <= limit) {
+                return change;
+            } else {
+                return null;
+            }
+        });
+    }
+
     private void buildView() {
 
         Label titleLabel = new Label("New Password");
@@ -87,10 +96,12 @@ public class ChangePasswordView {
         passwordField = new PasswordField();
         passwordField.setPromptText("New Password");
         passwordField.setStyle(fieldStyle);
+        passwordField.setTextFormatter(makeFormatter(64));
 
         passwordVisible = new TextField();
         passwordVisible.setPromptText("New Password");
         passwordVisible.setStyle(fieldStyle);
+        passwordVisible.setTextFormatter(makeFormatter(64));
         passwordVisible.setVisible(false);
         passwordVisible.setManaged(false);
 
@@ -124,10 +135,12 @@ public class ChangePasswordView {
         confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Confirm New Password");
         confirmPasswordField.setStyle(fieldStyle);
+        confirmPasswordField.setTextFormatter(makeFormatter(64));
 
         confirmPasswordVisible = new TextField();
         confirmPasswordVisible.setPromptText("Confirm New Password");
         confirmPasswordVisible.setStyle(fieldStyle);
+        confirmPasswordVisible.setTextFormatter(makeFormatter(64));
         confirmPasswordVisible.setVisible(false);
         confirmPasswordVisible.setManaged(false);
 

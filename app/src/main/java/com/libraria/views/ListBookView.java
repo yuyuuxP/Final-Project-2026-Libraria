@@ -59,7 +59,7 @@ public class ListBookView {
         kembaliButton.setOnMouseExited(e -> kembaliButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #7F8C8D;"));
 
         root = new VBox(25);
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_CENTER);
         root.setPadding(new Insets(35, 20, 25, 20));
         root.setStyle("-fx-background-color: #F8FAFC;");
         root.getChildren().addAll(headerContainer, scrollPane, kembaliButton);
