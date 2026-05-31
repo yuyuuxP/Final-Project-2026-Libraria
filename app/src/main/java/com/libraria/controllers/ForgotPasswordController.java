@@ -1,5 +1,6 @@
 package com.libraria.controllers;
 
+import com.libraria.dao.UserDAO;
 import com.libraria.models.Member;
 import com.libraria.views.ChangePasswordView;
 import com.libraria.views.ForgotPasswordView;
@@ -36,16 +37,20 @@ public class ForgotPasswordController extends LoginBaseController implements Run
             email = forgotPasswordView.getEmailField().getText().trim().toLowerCase();
 
             if (validator.isFieldNotEmpty(email)) {
-                if (validator.isEmailValid(email)) {
-                    if (data.isEmailExists(email)) {
-                        showSecretQuestion(stage);
+                if (UserDAO.getUsersRole(email).equals("member")) {
+                    if (validator.isEmailValid(email)) {
+                        if (data.isEmailExists(email)) {
+                            showSecretQuestion(stage);
+                        } else {
+                            forgotPasswordView.getErrorLabel().setText("Email not found! Please make sure you have a registered email");
+                            forgotPasswordView.getSignUpLink().setVisible(true);
+                            forgotPasswordView.getSignUpLink().setManaged(true);
+                        }
                     } else {
-                        forgotPasswordView.getErrorLabel().setText("Email not found! Please make sure you have a registered email");
-                        forgotPasswordView.getSignUpLink().setVisible(true);
-                        forgotPasswordView.getSignUpLink().setManaged(true);
+                        forgotPasswordView.getErrorLabel().setText("Email is incorrect!");
                     }
                 } else {
-                    forgotPasswordView.getErrorLabel().setText("Email is incorrect!");
+                    forgotPasswordView.getErrorLabel().setText("Cannot change admin's password!");                    
                 }
             } else {
                 forgotPasswordView.getErrorLabel().setText("Enter your Email Address");

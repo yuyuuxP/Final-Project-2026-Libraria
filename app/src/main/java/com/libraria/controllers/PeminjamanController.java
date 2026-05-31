@@ -7,7 +7,6 @@ import com.libraria.views.PeminjamanView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.paint.Color;
@@ -106,10 +105,7 @@ public class PeminjamanController extends BukuBaseController {
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
 
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 950;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Book Lending");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Lending", 950, 580);
     }
 
     private String kapitalisasiTeks(String input) {

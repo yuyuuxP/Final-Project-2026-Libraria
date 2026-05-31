@@ -4,7 +4,6 @@ import com.libraria.services.PengembalianService;
 import com.libraria.utils.AlertHelper;
 import com.libraria.views.PengembalianView;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 
 public class PengembalianController extends BukuBaseController {
     private PengembalianService pengembalianService = new PengembalianService();
@@ -38,10 +37,8 @@ public class PengembalianController extends BukuBaseController {
         });
 
         view.getKembaliButton().setOnAction(e -> dashboardController.show(stage));
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 950;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 580;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Book Return");
+
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Return", 950, 580);
     }
 
     private String kapitalisasiTeks(String input) {

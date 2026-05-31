@@ -1,6 +1,5 @@
 package com.libraria.controllers;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.libraria.dao.UserDAO;
 import com.libraria.utils.AlertHelper;
@@ -36,9 +35,6 @@ public class KelolaBukuController extends BukuBaseController {
             dashboardController.show(stage);
         });
 
-        double currentWidth = stage.isMaximized() ? stage.getWidth() : 850;
-        double currentHeight = stage.isMaximized() ? stage.getHeight() : 600;
-        Scene scene = new Scene(view.getRoot(), currentWidth, currentHeight);
-        aturDanTampilkanScene(stage, scene, "Libraria - Book Management");
+        aturDanTampilkanScene(stage, view.getRoot(), "Libraria - Book Management", 850, 600);
     }
 }
