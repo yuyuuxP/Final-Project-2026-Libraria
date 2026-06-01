@@ -21,10 +21,6 @@ public class PeminjamanController extends BukuBaseController {
         this.dashboardController = dashboardController;
     }
 
-    public PeminjamanController() {
-        //TODO Auto-generated constructor stub
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public void show(Stage stage) {
@@ -68,13 +64,15 @@ public class PeminjamanController extends BukuBaseController {
         view.getPinjamButton().setOnAction(e -> {
             String judulIn = view.getJudulField().getText().trim();
             String namaIn = view.getNamaPeminjamField().getText().trim();
+            
+            // Validasi input kosong
             if (judulIn.isEmpty() || namaIn.isEmpty()) {
-                AlertHelper.error("Failed! Please fill in both the book title and borrower name fields.");
+                AlertHelper.error("Failed! Please fill in both fields.");
                 return;
             }
-            String judulProses = kapitalisasiTeks(judulIn);
-            String namaProses = kapitalisasiTeks(namaIn);
 
+            String judulProses = kapitalisasiTeks(judulIn);
+            
             Peminjaman bukuTarget = null;
             for (Peminjaman p : katalogList) {
                 if (p.getTitle().trim().equalsIgnoreCase(judulProses)) {
@@ -82,24 +80,28 @@ public class PeminjamanController extends BukuBaseController {
                     break;
                 }
             }
+
             if (bukuTarget == null) {
-                AlertHelper.error("Failed! Book '" + judulProses + "' not found in the catalog. Please check the title and try again.");
+                AlertHelper.error("Failed! Book '" + judulProses + "' not found.");
                 return;
             }
-            if (bukuTarget.getStatus().equalsIgnoreCase("Not Available")) {
-                AlertHelper.error("Failed! Book '" + judulProses + "' is currently not available (already borrowed).");
-                return;
-            }
-            if (peminjamanService.eksekusiPeminjaman(judulProses, namaProses)) {
-                AlertHelper.success("Book '" + judulProses + "' successfully borrowed by " + namaProses + "!");
-                view.getJudulField().clear();
-                view.getNamaPeminjamField().clear();
+
+            if (bukuTarget.getStatus().equalsIgnoreCase("Not Available") || 
+                bukuTarget.getStatus().equalsIgnoreCase("Tidak Tersedia")) {
                 
+                AlertHelper.error("Already borrowed! Book '" + judulProses + "' is not available.");
+                return;
+            }
+
+            if (peminjamanService.eksekusiPeminjaman(judulProses, namaIn)) {
+                AlertHelper.success("Book successfully borrowed!");
                 katalogList.clear();
                 katalogList.addAll(peminjamanService.ambilKatalogPeminjaman());
                 view.getTableBuku().setItems(katalogList);
-            } else {
-                AlertHelper.error("Failed to process the borrowing transaction in the database.");
+
+                view.getJudulField().clear();
+                view.getNamaPeminjamField().clear();
+                view.getJudulField().requestFocus();
             }
         });
 
