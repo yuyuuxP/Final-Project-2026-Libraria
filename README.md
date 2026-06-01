@@ -106,8 +106,6 @@ Final-Project-2026-Libraria/
 │   │   │   └── PengembalianService.java
 │   │   ├── utils/                          # Helper
 │   │   │   ├── AlertHelper.java
-│   │   │   ├── DatabaseUtils.java
-│   │   │   ├── SceneSwitcher.java
 │   │   │   └── Validator.java
 │   │   └── views/                          # Komponen tampilan JavaFX
 │   │       ├── LoginView.java
