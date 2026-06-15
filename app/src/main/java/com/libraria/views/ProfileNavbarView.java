@@ -25,7 +25,7 @@ public class ProfileNavbarView {
             "-fx-border-color: transparent;";
 
     public ProfileNavbarView() {
-        changePasswordLink = new Hyperlink("Change Password");
+        changePasswordLink = new Hyperlink("Change/Forgot Password");
         changePasswordLink.setStyle(linkStyle);
 
         deleteAccountLink = new Hyperlink("Delete Account");
