@@ -33,7 +33,9 @@ public class BukuController extends BukuBaseController {
             String genre = kapitalisasiTeks(genreInput);
 
             Buku bukuBaru = new Buku(judul, penulis, genre, kategori);
-            if (bukuService.tambahBuku(bukuBaru)) {
+            if (bukuService.isJudulExist(judul)) { 
+                AlertHelper.error("Failed: Book title already exists in the library.");
+            } else if (bukuService.tambahBuku(bukuBaru)) {
                 AlertHelper.success("New book added successfully!");
                 bukuList.add(bukuBaru);
 

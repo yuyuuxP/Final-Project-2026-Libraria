@@ -81,4 +81,20 @@ public class BukuDAO {
             try { if (conn != null) conn.close(); } catch (Exception e) {}
         }
     }
+
+    public boolean isJudulExist(String title) {
+        String query = "SELECT COUNT(*) FROM books WHERE title = ?";
+        try (Connection conn = DatabaseConnection.connect();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            pstmt.setString(1, title);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
